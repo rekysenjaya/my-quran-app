@@ -16,11 +16,10 @@ export default async function Home() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 md:px-8 bg-[#0a0a0c] text-white">
+    <div className="mx-auto max-w-7xl px-4 md:px-8">
       <h1>Cari Surat Al-Quran</h1>
       <p>Cari berdasarkan nama surat, nomor, atau arti</p>
       <SearchSurat suratList={suratList}/>
-      
     </div>
   );
 }

@@ -1,5 +1,7 @@
 // src/types/surat.ts
 
+import { AudioUrls } from "./ayatType";
+
 export interface Surat {
   nomor: number;
   nama: string;
@@ -7,9 +9,8 @@ export interface Surat {
   jumlahAyat: number;
   tempatTurun: string;
   arti: string;
-  audioFull: object;
   deskripsi: string;
-  // tambahkan field lain yg ada di response “data” sesuai dokumentasi
+  audioFull: AudioUrls;
 }
 
 

@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { Surat } from "@/types/suratType";
 import Input from "../Input";
+import Link from "next/link";
 
 interface SearchSuratProps {
   suratList: Surat[];
@@ -33,12 +34,12 @@ export default function SearchSurat({ suratList }: SearchSuratProps) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {filteredSurat.map((surat) => (
-          <div key={surat.nomor} className="transition-transform duration-300 transform hover:scale-105 border p-4 rounded-3xl shadow-sm cursor-pointer">
+          <Link key={surat.nomor} href={`/surat/${surat.nomor}`} className="transition-transform duration-300 transform hover:scale-105 border p-4 rounded-3xl shadow-sm cursor-pointer">
             <div className="flex gap-4">
-              <span className="border-[#f59e0b] border-2 rounded-full h-[40px] min-w-[40px] flex justify-center items-center">
-                <div className="border-[#f59e0b] border rounded-full h-[30px] w-[30px] flex justify-center items-center">
+              <span className="border-pink-400 border-2 rounded-full h-[40px] min-w-[40px] flex justify-center items-center">
+                <div className="border-pink-400 border rounded-full h-[30px] w-[30px] flex justify-center items-center">
                   <div className="font-bold text-center leading-none">{surat.nomor}</div>
                 </div>
               </span>
@@ -47,9 +48,9 @@ export default function SearchSurat({ suratList }: SearchSuratProps) {
                 <span className="text-gray-500 text-sm">{surat.jumlahAyat}</span>
                 <span className="text-gray-500 text-sm">{surat.tempatTurun}</span>
               </div>
-              <div className="text-[#448a49] text-2xl norw">{surat.nama}</div>
+              <div className="text-sky-300 text-2xl whitespace-nowrap">{surat.nama}</div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>
