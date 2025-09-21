@@ -43,7 +43,9 @@ export default function SearchSurat({ suratList }: SearchSuratProps) {
             <div className="flex gap-4">
               <span className="border-pink-400 border-2 rounded-full h-[40px] min-w-[40px] flex justify-center items-center">
                 <div className="border-pink-400 border rounded-full h-[30px] w-[30px] flex justify-center items-center">
-                  <div className="font-bold text-center leading-none">{surat.nomor}</div>
+                  <p className="font-bold text-center leading-none">
+                    {surat.nomor}
+                  </p>
                 </div>
               </span>
               <div className="w-full">

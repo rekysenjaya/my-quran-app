@@ -1,44 +1,47 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { notFound, useParams } from "next/navigation";
+import Head from "next/head";
+import { notFound } from "next/navigation";
 
 import { fetchDetailSurat } from "@/lib/api";
 
 import ContainerSurat from "@/components/ContainerSurat";
-import ContainerSuratLoading from "@/components/ContainerSuratLoading";
 
-import { Surat } from "@/types/ayatType";
+export default async function DetailSuratPage({ params }: { params: { id: string } }) {
+  const { id } = await params;
 
-export default function DetailSuratPage() {
-  const params = useParams();
-  const id = params?.id as string | undefined;
-
-  const [detailSurat, setDetailSurat] = useState({} as Surat);
-
-  useEffect(() => {
-    if (id) {
-      fetchSuratDetail(id);
+  let detailSurat;
+  try {
+    const res = await fetchDetailSurat(id);
+    if (res.data) {
+      detailSurat = res.data
     }
-  }, [id]);
-
-  const fetchSuratDetail = async (i: string) => {
-    try {
-      const res = await fetchDetailSurat(i);
-      console.log(res);
-
-      if (res.data) {
-        setDetailSurat(res.data);
-      }
-    } catch (e) {
-      console.error(e);
-      notFound(); // return notFound() should not be inside catch
-    }
-  };
-
-  if (!detailSurat.nomor) {
-    return <ContainerSuratLoading />;
+  } catch (e) {
+    console.log(e);
+    return notFound(); // kalau data tidak ditemukan
   }
 
-  return <ContainerSurat detailSurat={detailSurat} />;
+  return (
+    <div>
+      <Head>
+        <title>{`Surat ${detailSurat.name} - Al-Qur'an Online`}</title>
+        <meta name="description" content={`Baca Surat ${detailSurat.name} dalam Al-Qur'an online lengkap dengan terjemahan, tajwid, dan tafsir.`} />
+        <meta property="og:title" content={`Surat ${detailSurat.name} - Al-Qur'an Online`} />
+        <meta property="og:description" content={`Surat ${detailSurat.name} dengan teks Arab, terjemahan Indonesia, dan tafsir.`} />
+        <meta property="og:type" content="article" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": `Surat ${detailSurat.name}`,
+              "description": `Surat ${detailSurat.name} dalam Al-Qur'an lengkap dengan teks Arab, terjemahan, dan tafsir.`,
+              "author": { "@type": "Organization", "name": "AlQuranWeb" },
+              "datePublished": "2022-01-01",
+            }),
+          }}
+        />
+      </Head>
+      <ContainerSurat detailSurat={detailSurat} />
+    </div>
+  );
 }

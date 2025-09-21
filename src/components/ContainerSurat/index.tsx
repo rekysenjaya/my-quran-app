@@ -27,7 +27,9 @@ const ContainerSurat = ({ detailSurat }: { detailSurat: Surat }) => {
               <div className='flex gap-4 items-center'>
                 <div className="border-pink-400 border-2 rounded-full h-[40px] w-[40px] flex justify-center items-center">
                   <div className="border-pink-400 border rounded-full h-[30px] w-[30px] flex justify-center items-center">
-                    <div className="font-bold text-center leading-none">{detailSurat.nomor}</div>
+                    <p className="font-bold text-center leading-none">
+                      {detailSurat.nomor}
+                    </p>
                   </div>
                 </div>
                 <div>
