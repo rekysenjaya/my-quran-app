@@ -5,6 +5,8 @@
 
 **My Quran App** adalah aplikasi Al-Qur'an digital yang dibangun menggunakan [Next.js](https://nextjs.org/), dengan tujuan memberikan pengalaman membaca Al-Qur'an yang ringan, cepat, dan modern. Aplikasi ini menampilkan daftar surat, ayat, terjemahan, dan fitur-fitur pendukung lainnya untuk membantu pengguna dalam membaca dan memahami Al-Qur'an.
 
+🔗 **Coba sekarang:** [https://my-quran-app-roan.vercel.app/](https://my-quran-app-roan.vercel.app/)
+
 ## ✨ Fitur Utama
 
 * ✅ Daftar 114 Surat lengkap
@@ -52,6 +54,8 @@ Aplikasi akan berjalan di `http://localhost:3000`.
 ## 🚀 Deployment
 
 Aplikasi ini dapat dengan mudah dideploy ke [Vercel](https://vercel.com/) dengan integrasi langsung dari GitHub.
+
+🔗 **Demo live:** [https://my-quran-app-roan.vercel.app/](https://my-quran-app-roan.vercel.app/)
 
 ## 📁 Struktur Direktori (Opsional)
 
