@@ -13,7 +13,6 @@ export interface Surat {
   audioFull: AudioUrls;
 }
 
-
 export interface SuratListResponse {
   code: number;
   message: string;

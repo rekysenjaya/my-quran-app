@@ -6,7 +6,7 @@ interface SwitchProps {
 const Switch = ({ isChecked, onChange }: SwitchProps) => {
   return (
     <div>
-      <label className="relative inline-block w-10 h-6">
+      <label className="relative inline-block w-10 h-6 -mb-1.5">
         <input
           type="checkbox"
           checked={isChecked}

@@ -1,24 +1,44 @@
-import { notFound } from "next/navigation";
+"use client";
 
-import ListSnapScroll from "@/components/ListSnapScroll";
-import { fetchDetailSurat } from "@/lib/api"; // asumsi kamu punya API ini
-import ControllListAyat from "@/components/ControllListAyat";
+import { useEffect, useState } from "react";
+import { notFound, useParams } from "next/navigation";
+
+import { fetchDetailSurat } from "@/lib/api";
+
 import ContainerSurat from "@/components/ContainerSurat";
+import ContainerSuratLoading from "@/components/ContainerSuratLoading";
 
-export default async function DetailSuratPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+import { Surat } from "@/types/ayatType";
 
-  let detailSurat;
-  try {
-    const res = await fetchDetailSurat(id);
-    if (res.data) {
-      detailSurat = res.data
+export default function DetailSuratPage() {
+  const params = useParams();
+  const id = params?.id as string | undefined;
+
+  const [detailSurat, setDetailSurat] = useState({} as Surat);
+
+  useEffect(() => {
+    if (id) {
+      fetchSuratDetail(id);
     }
-  } catch (e) {
-    return notFound(); // kalau data tidak ditemukan
+  }, [id]);
+
+  const fetchSuratDetail = async (i: string) => {
+    try {
+      const res = await fetchDetailSurat(i);
+      console.log(res);
+
+      if (res.data) {
+        setDetailSurat(res.data);
+      }
+    } catch (e) {
+      console.error(e);
+      notFound(); // return notFound() should not be inside catch
+    }
+  };
+
+  if (!detailSurat.nomor) {
+    return <ContainerSuratLoading />;
   }
 
-  return (
-    <ContainerSurat detailSurat={detailSurat} />
-  );
+  return <ContainerSurat detailSurat={detailSurat} />;
 }

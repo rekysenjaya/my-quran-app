@@ -1,7 +1,8 @@
 "use client";
 
+import { createContext, useContext, useState, ReactNode, useLayoutEffect } from 'react';
+
 import ContainerSuratLoading from '@/components/ContainerSuratLoading';
-import { createContext, useContext, useState, ReactNode, useEffect, useLayoutEffect } from 'react';
 
 // Tipe untuk context
 interface ShowTextContextType {

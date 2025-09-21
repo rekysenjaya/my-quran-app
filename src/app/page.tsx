@@ -1,8 +1,8 @@
 
 import { fetchListSurat } from "@/lib/api";
+
 import { Surat } from "@/types/suratType";
 
-import Input from "@/components/Input";
 import SearchSurat from "@/components/ListSurat";
 
 export default async function Home() {

@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Surat } from "@/types/suratType";
-import Input from "../Input";
 import Link from "next/link";
+
+import ImageMode from "../ImageMode";
+import Input from "../Input";
+
+import { Surat } from "@/types/suratType";
 
 interface SearchSuratProps {
   suratList: Surat[];
@@ -44,9 +47,13 @@ export default function SearchSurat({ suratList }: SearchSuratProps) {
                 </div>
               </span>
               <div className="w-full">
-                <h3>{surat.namaLatin}<span className="font-normal text-[#a1a1aa]">({surat.arti})</span></h3>
-                <span className="text-gray-500 text-sm">{surat.jumlahAyat}</span>
-                <span className="text-gray-500 text-sm">{surat.tempatTurun}</span>
+                <h3>{surat.namaLatin} <span className="font-normal text-[#a1a1aa]">({surat.arti})</span></h3>
+                <div className="flex mt-2 gap-1 items-center rounded-lg bg-gray-600 max-w-min py-1 px-2">
+                  <ImageMode type="page" className="h-3.5 w-3.5" /><div className="text-xs font-medium">{surat.jumlahAyat}</div>
+                </div>
+                <div className="flex mt-2 gap-1 items-center">
+                  <ImageMode type="location" className="h-3.5 w-3.5" /><div className="text-xs font-medium">{surat.tempatTurun}</div>
+                </div>
               </div>
               <div className="text-sky-300 text-2xl whitespace-nowrap">{surat.nama}</div>
             </div>
