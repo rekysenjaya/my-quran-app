@@ -1,31 +1,37 @@
 import Head from "next/head";
 import { notFound } from "next/navigation";
 
-import { fetchDetailSurat } from "@/lib/api";
+import { fetchDetailSurat, fetchAllSurat } from "@/lib/api";
 
 import ContainerSurat from "@/components/ContainerSurat";
 
+export async function generateStaticParams() {
+  const res = await fetchAllSurat();
+  return res.map((surah: any) => ({
+    id: surah.nomor.toString(),
+  }));
+}
+
 export default async function DetailSuratPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+  const { id } = params;
 
   let detailSurat;
   try {
     const res = await fetchDetailSurat(id);
-    if (res.data) {
-      detailSurat = res.data
-    }
+    if (!res) return notFound();
+    detailSurat = res;
   } catch (e) {
     console.log(e);
-    return notFound(); // kalau data tidak ditemukan
+    return notFound();
   }
 
   return (
-    <div>
+    <>
       <Head>
-        <title>{`Surat ${detailSurat.name} - Al-Qur'an Online`}</title>
-        <meta name="description" content={`Baca Surat ${detailSurat.name} dalam Al-Qur'an online lengkap dengan terjemahan, tajwid, dan tafsir.`} />
-        <meta property="og:title" content={`Surat ${detailSurat.name} - Al-Qur'an Online`} />
-        <meta property="og:description" content={`Surat ${detailSurat.name} dengan teks Arab, terjemahan Indonesia, dan tafsir.`} />
+        <title>{`Surat ${detailSurat.namaLatin} - Al-Qur'an Online`}</title>
+        <meta name="description" content={`Baca Surat ${detailSurat.namaLatin} (${detailSurat.nama}) lengkap dengan terjemahan dan tafsir.`} />
+        <meta property="og:title" content={`Surat ${detailSurat.namaLatin} - Al-Qur'an Online`} />
+        <meta property="og:description" content={`Surat ${detailSurat.namaLatin} dengan teks Arab, terjemahan bahasa Indonesia, dan tafsir.`} />
         <meta property="og:type" content="article" />
         <script
           type="application/ld+json"
@@ -33,15 +39,17 @@ export default async function DetailSuratPage({ params }: { params: { id: string
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Article",
-              "headline": `Surat ${detailSurat.name}`,
-              "description": `Surat ${detailSurat.name} dalam Al-Qur'an lengkap dengan teks Arab, terjemahan, dan tafsir.`,
+              "headline": `Surat ${detailSurat.namaLatin}`,
+              "description": `Surat ${detailSurat.namaLatin} dalam Al-Qur'an lengkap dengan teks Arab, terjemahan, dan tafsir.`,
               "author": { "@type": "Organization", "name": "AlQuranWeb" },
               "datePublished": "2022-01-01",
             }),
           }}
         />
       </Head>
-      <ContainerSurat detailSurat={detailSurat} />
-    </div>
+      <main>
+        <ContainerSurat detailSurat={detailSurat} />
+      </main>
+    </>
   );
 }

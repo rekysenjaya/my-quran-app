@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from 'react';
+import Link from 'next/link';
 
 import { ShowTextProvider } from '@/context/ShowTextContext'
 
@@ -22,6 +23,10 @@ const ContainerSurat = ({ detailSurat }: { detailSurat: Surat }) => {
     <ShowTextProvider>
       <div className='h-screen'>
         <div className='flex flex-col h-full p-4 gap-4'>
+          <Link href="/" className='flex gap-2 cursor-pointer'>
+            <ImageMode type='back' className='h-4 w-6' />
+            <p>Kembali ke Beranda</p>
+          </Link>
           <div className='border-l-sky-500 border border-l-8 rounded-2xl p-4 flex-shrink-0 max-h-[50vh] overflow-auto'>
             <div className='flex justify-between items-center mb-4'>
               <div className='flex gap-4 items-center'>
@@ -54,7 +59,6 @@ const ContainerSurat = ({ detailSurat }: { detailSurat: Surat }) => {
               </div>
             </div>
           </div>
-          {/* Tampilkan ayat-ayat jika ada */}
           <ControllListAyat listAyat={detailSurat.ayat} handleSelectAyat={chooseAyat} />
           <ListSnapScroll ayatList={detailSurat.ayat} scrollToIndex={ayat} />
         </div>
