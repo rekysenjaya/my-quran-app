@@ -99,12 +99,12 @@ const ImageMode = memo(({
   return <div className={className}>
     {light && <Image
       src={light}
-      alt="Light Mode Image"
+      alt={`${type}-icon`}
       className={`object-cover dark:hidden`}
     />}
     {dark && <Image
       src={dark}
-      alt="Dark Mode Image"
+      alt={`${type}-icon`}
       className={`object-cover hidden dark:block`}
     />}
   </div>

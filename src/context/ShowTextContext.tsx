@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode, useLayoutEffect } from 'react';
 
-import ContainerSuratLoading from '@/components/ContainerSuratLoading';
+import { ContainerListSuratLoading } from '@/components/ContainerSuratLoading';
 
 // Tipe untuk context
 interface ShowTextContextType {
@@ -66,7 +66,7 @@ export function ShowTextProvider({ children }: ShowTextProviderProps) {
 
   // Render loading atau komponen lain sebelum data siap
   if (!isReady) {
-    return <ContainerSuratLoading />; // Anda bisa mengganti dengan komponen loading yang lebih baik
+    return <ContainerListSuratLoading />; // Anda bisa mengganti dengan komponen loading yang lebih baik
   }
 
   return (
