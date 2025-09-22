@@ -5,9 +5,11 @@ import { fetchDetailSurat, fetchAllSurat } from "@/lib/api";
 
 import ContainerSurat from "@/components/ContainerSurat";
 
+import { Surat } from "@/types/suratType";
+
 export async function generateStaticParams() {
   const res = await fetchAllSurat();
-  return res.map((surah: any) => ({
+  return res.map((surah: Surat) => ({
     id: surah.nomor.toString(),
   }));
 }

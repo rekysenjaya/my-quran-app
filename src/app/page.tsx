@@ -51,7 +51,7 @@ export default async function Home() {
       </Head>
       <main>
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h1 className="text-2xl font-bold">Cari Surat Al-Qur'an</h1>
+          <h1 className="text-2xl font-bold">Cari Surat Al-Qur&apos;an</h1>
           <h3 className="text-md mb-4">Cari berdasarkan nama surat, nomor, atau arti</h3>
           <SearchSurat suratList={suratList} />
         </div>
