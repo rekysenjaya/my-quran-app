@@ -53,7 +53,7 @@ export default async function DetailSuratPage({ params }: { params: { id: string
         />
       </Head>
       <main>
-        <div className='h-screen'>
+        <div className="mx-auto max-w-7xl px-4 md:px-8 h-screen">
           <div className='flex flex-col h-full p-4 gap-4'>
             <Link href="/" className='flex gap-2 cursor-pointer'>
               <ImageMode type='back' className='h-4 w-6' />
